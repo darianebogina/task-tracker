@@ -4,14 +4,18 @@ export interface ITask {
     readonly id: number;
     title: string;
     status: Status;
-    readonly priority: Priority;
+    priority: Priority;
+
+    getInfo(): string;
 }
 
 export abstract class BaseTask implements ITask {
     private static counter = 0;
 
     readonly #id: number;
-    readonly #priority: Priority;
+    #priority!: Priority;
+
+    protected readonly createdAt: Date;
 
     public title: string;
     public status: Status;
@@ -20,7 +24,8 @@ export abstract class BaseTask implements ITask {
         this.#id = ++BaseTask.counter;
         this.title = title;
         this.status = status;
-        this.#priority = BaseTask.validatePriority(priority);
+        this.priority = priority;
+        this.createdAt = new Date();
     }
 
     get id(): number {
@@ -29,6 +34,10 @@ export abstract class BaseTask implements ITask {
 
     get priority(): Priority {
         return this.#priority;
+    }
+
+    set priority(value: Priority) {
+        this.#priority = BaseTask.validatePriority(value);
     }
 
     private static validatePriority(value: Priority): Priority {
@@ -41,4 +50,11 @@ export abstract class BaseTask implements ITask {
     static compareByPriority(a: ITask, b: ITask): number {
         return a.priority - b.priority;
     }
+
+    protected baseInfo(): string {
+        const created = this.createdAt.toLocaleDateString("ru-RU");
+        return `#${this.id} ${this.title} | статус: ${this.status} | приоритет: ${this.priority} | создана: ${created}`;
+    }
+
+    abstract getInfo(): string;
 }
