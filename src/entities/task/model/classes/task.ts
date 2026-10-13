@@ -9,7 +9,7 @@ export class Task extends BaseTask {
         this.deadline = deadline;
     }
 
-    getInfo(): string {
+    getInfo() {
         const deadline = this.deadline.toLocaleDateString("ru-RU");
         return `[Задача ${this.baseInfo()}] | дедлайн: ${deadline}`;
     }

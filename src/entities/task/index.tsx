@@ -10,6 +10,7 @@ type TaskCardProps = {
 
 export const TaskCard = ({task, isSelected = false, onClick}: TaskCardProps) => {
     const isBug = task instanceof Bug;
+    const isTask = task instanceof Task;
 
     return (
         <article
@@ -20,7 +21,7 @@ export const TaskCard = ({task, isSelected = false, onClick}: TaskCardProps) => 
             <h3 className={styles.title}>{task.title}</h3>
             <p className={styles.meta}>Приоритет: {task.priority}</p>
             {isBug && <p className={styles.meta}>Критичность: {task.severity}</p>}
-            {task instanceof Task && (
+            {isTask && (
                 <p className={styles.meta}>Дедлайн: {task.deadline.toLocaleDateString("ru-RU")}</p>
             )}
         </article>
