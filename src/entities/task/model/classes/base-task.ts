@@ -40,9 +40,9 @@ export abstract class BaseTask implements ITask {
         this.#priority = BaseTask.validatePriority(value);
     }
 
-    private static validatePriority(value: Priority) {
+    private static validatePriority(value: Priority): Priority {
         if (value < 1 || value > 5) {
-            throw new Error("Приоритет должен быть целым числом от 1 до 5");
+            throw new Error("Приоритет должен быть числом от 1 до 5");
         }
         return value;
     }
