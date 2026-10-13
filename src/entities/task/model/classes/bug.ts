@@ -9,7 +9,7 @@ export class Bug extends BaseTask {
         this.severity = severity;
     }
 
-    getInfo(): string {
+    getInfo() {
         return `[Баг ${this.baseInfo()}] | критичность: ${this.severity}`;
     }
 }

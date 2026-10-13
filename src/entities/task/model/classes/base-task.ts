@@ -13,7 +13,7 @@ export abstract class BaseTask implements ITask {
     private static counter = 0;
 
     readonly #id: number;
-    #priority!: Priority;
+    #priority: Priority;
 
     protected readonly createdAt: Date;
 
@@ -21,10 +21,10 @@ export abstract class BaseTask implements ITask {
     public status: Status;
 
     constructor(title: string, status: Status, priority: Priority) {
-        this.#id = ++BaseTask.counter;
+        this.#id = BaseTask.counter += 1;
         this.title = title;
         this.status = status;
-        this.priority = priority;
+        this.#priority = BaseTask.validatePriority(priority);
         this.createdAt = new Date();
     }
 
@@ -32,7 +32,7 @@ export abstract class BaseTask implements ITask {
         return this.#id;
     }
 
-    get priority(): Priority {
+    get priority() {
         return this.#priority;
     }
 
@@ -40,14 +40,14 @@ export abstract class BaseTask implements ITask {
         this.#priority = BaseTask.validatePriority(value);
     }
 
-    private static validatePriority(value: Priority): Priority {
-        if (!Number.isInteger(value) || value < 1 || value > 5) {
-            throw new RangeError("Приоритет должен быть целым числом от 1 до 5");
+    private static validatePriority(value: Priority) {
+        if (value < 1 || value > 5) {
+            throw new Error("Приоритет должен быть целым числом от 1 до 5");
         }
         return value;
     }
 
-    static compareByPriority(a: ITask, b: ITask): number {
+    static compareByPriority(a: ITask, b: ITask) {
         return a.priority - b.priority;
     }
 
