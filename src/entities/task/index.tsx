@@ -6,7 +6,7 @@ type TaskCardProps = {
     task: ITask;
     isSelected?: boolean;
     onClick?: () => void;
-}
+};
 
 export const TaskCard = ({task, isSelected = false, onClick}: TaskCardProps) => {
     const isBug = task instanceof Bug;

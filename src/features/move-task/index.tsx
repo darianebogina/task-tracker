@@ -1,13 +1,13 @@
 import {STATUSES, type ITask, type Status} from "@entities/task/model";
-import styles from "./styles.module.css";
 import {MOVES} from "./config/moves.ts";
+import styles from "./styles.module.css";
 
 type MoveTaskButtonsProps = {
     task: ITask | null;
     onMove: (task: ITask, status: Status) => void;
-}
+};
 
-export const MoveTaskButtons = ({task, onMove}:MoveTaskButtonsProps) => {
+export const MoveTaskButtons = ({task, onMove}: MoveTaskButtonsProps) => {
     const index = task ? STATUSES.indexOf(task.status) : -1;
 
     return (

@@ -1,5 +1,5 @@
 import {useState} from "react";
-import {TaskBoard} from '@widgets/task-board'
+import {TaskBoard} from "@widgets/task-board";
 import {MoveTaskButtons} from "@features/move-task";
 import type {ITask, Status} from "@entities/task/model";
 import {MOCK_TASKS} from "./lib.ts";
@@ -28,5 +28,5 @@ export const HomePage = () => {
             </header>
             <TaskBoard tasks={tasks} selectedId={selectedId} onSelect={handleSelect}/>
         </>
-    )
+    );
 };

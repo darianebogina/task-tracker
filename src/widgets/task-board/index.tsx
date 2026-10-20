@@ -6,7 +6,7 @@ type TaskBoardProps = {
     tasks: ITask[];
     selectedId: number | null;
     onSelect: (task: ITask) => void;
-}
+};
 
 export const TaskBoard = ({tasks, selectedId, onSelect}: TaskBoardProps) => {
     return (

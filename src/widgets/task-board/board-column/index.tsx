@@ -8,7 +8,7 @@ type BoardColumnProps = {
     tasks: ITask[];
     selectedId: number | null;
     onSelect: (task: ITask) => void;
-}
+};
 
 export const BoardColumn = ({status, tasks, selectedId, onSelect}: BoardColumnProps) => {
     return (
