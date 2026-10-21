@@ -9,9 +9,15 @@ export interface ITask {
     readonly createdAt: Date;
 }
 
-export abstract class BaseTask implements ITask {
-    static #counter = 0;
+export type BaseTaskParams = {
+    id: number;
+    title: string;
+    status: Status;
+    priority: Priority;
+    createdAt: Date;
+};
 
+export abstract class BaseTask implements ITask {
     readonly #id: number;
     readonly #createdAt: Date;
     #priority: Priority;
@@ -19,12 +25,12 @@ export abstract class BaseTask implements ITask {
     title: string;
     status: Status;
 
-    constructor(title: string, status: Status, priority: Priority) {
-        this.#id = BaseTask.#counter += 1;
+    constructor({id, title, status, priority, createdAt}: BaseTaskParams) {
+        this.#id = id;
         this.title = title;
         this.status = status;
         this.#priority = BaseTask.#validatePriority(priority);
-        this.#createdAt = new Date();
+        this.#createdAt = createdAt;
     }
 
     get id() {

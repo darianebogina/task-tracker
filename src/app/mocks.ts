@@ -1,0 +1,60 @@
+import {Bug, Task, type TaskVariant} from "@entities/task/model";
+
+export const MOCK_TASKS: TaskVariant[] = [
+    new Task({
+        id: 1,
+        title: "Сверстать шапку",
+        status: "todo",
+        priority: 3,
+        createdAt: new Date("2026-10-01"),
+        deadline: new Date("2026-10-10"),
+    }),
+    new Bug({
+        id: 2,
+        title: "Не сохраняется фильтр",
+        status: "todo",
+        priority: 1,
+        createdAt: new Date("2026-10-03"),
+        severity: "major",
+    }),
+    new Task({
+        id: 3,
+        title: "Настроить роутинг",
+        status: "todo",
+        priority: 2,
+        createdAt: new Date("2026-10-02"),
+        deadline: new Date("2026-10-15"),
+    }),
+    new Task({
+        id: 4,
+        title: "Сделать карточку задачи",
+        status: "in_progress",
+        priority: 2,
+        createdAt: new Date("2026-09-29"),
+        deadline: new Date("2026-10-05"),
+    }),
+    new Bug({
+        id: 5,
+        title: "Опечатка в заголовке",
+        status: "in_progress",
+        priority: 5,
+        createdAt: new Date("2026-10-04"),
+        severity: "minor",
+    }),
+    new Task({
+        id: 6,
+        title: "Инициализировать проект",
+        status: "done",
+        priority: 1,
+        createdAt: new Date("2026-09-25"),
+        deadline: new Date("2026-09-28"),
+    }),
+    new Task({
+        id: 7,
+        title: "Описать типы задач",
+        status: "done",
+        priority: 4,
+        createdAt: new Date("2026-09-26"),
+        deadline: new Date("2026-09-30"),
+    }),
+];

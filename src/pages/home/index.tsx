@@ -2,11 +2,14 @@ import {useState} from "react";
 import {TaskBoard} from "@widgets/task-board";
 import {MoveTaskButtons} from "@features/move-task";
 import type {TaskVariant, ITask, Status} from "@entities/task/model";
-import {MOCK_TASKS} from "./lib.ts";
 import styles from "./styles.module.css";
 
-export const HomePage = () => {
-    const [tasks, setTasks] = useState<TaskVariant[]>(MOCK_TASKS);
+type HomePageProps = {
+    initialTasks: TaskVariant[];
+};
+
+export const HomePage = ({initialTasks}: HomePageProps) => {
+    const [tasks, setTasks] = useState(initialTasks);
     const [selectedId, setSelectedId] = useState<number | null>(null);
 
     const selectedTask = tasks.find((task) => task.id === selectedId) ?? null;

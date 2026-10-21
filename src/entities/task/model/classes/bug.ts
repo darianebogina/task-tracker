@@ -1,12 +1,16 @@
-import type {Priority, Severity, Status} from "../types.ts";
-import {BaseTask} from "./base-task.ts";
+import type {Severity} from "../types.ts";
+import {BaseTask, type BaseTaskParams} from "./base-task.ts";
+
+export type BugParams = BaseTaskParams & {
+    severity: Severity;
+};
 
 export class Bug extends BaseTask {
     severity: Severity;
     readonly kind = "bug";
 
-    constructor(title: string, status: Status, priority: Priority, severity: Severity) {
-        super(title, status, priority);
+    constructor({severity, ...params}: BugParams) {
+        super(params);
         this.severity = severity;
     }
 }

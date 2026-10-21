@@ -1,12 +1,15 @@
-import type {Priority, Status} from "../types.ts";
-import {BaseTask} from "./base-task.ts";
+import {BaseTask, type BaseTaskParams} from "./base-task.ts";
+
+export type TaskParams = BaseTaskParams & {
+    deadline: Date;
+};
 
 export class Task extends BaseTask {
     deadline: Date;
     readonly kind = "task";
 
-    constructor(title: string, status: Status, priority: Priority, deadline: Date) {
-        super(title, status, priority);
+    constructor({deadline, ...params}: TaskParams) {
+        super(params);
         this.deadline = deadline;
     }
 }
