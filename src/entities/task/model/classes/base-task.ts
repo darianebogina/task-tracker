@@ -1,21 +1,22 @@
-import type {Priority, Status} from "../types.ts";
+import type {Priority, Status, TaskKind} from "../types.ts";
 
 export interface ITask {
     readonly id: number;
+    readonly kind: TaskKind;
     title: string;
     status: Status;
     priority: Priority;
 
     getInfo(): string;
+    getDetails(): string;
 }
 
 export abstract class BaseTask implements ITask {
     static #counter = 0;
 
     readonly #id: number;
+    readonly #createdAt: Date;
     #priority: Priority;
-
-    protected readonly createdAt: Date;
 
     title: string;
     status: Status;
@@ -25,7 +26,7 @@ export abstract class BaseTask implements ITask {
         this.title = title;
         this.status = status;
         this.#priority = BaseTask.#validatePriority(priority);
-        this.createdAt = new Date();
+        this.#createdAt = new Date();
     }
 
     get id() {
@@ -51,10 +52,13 @@ export abstract class BaseTask implements ITask {
         return value;
     }
 
-    protected baseInfo() {
-        const created = this.createdAt.toLocaleDateString("ru-RU");
-        return `#${this.id} ${this.title} | статус: ${this.status} | приоритет: ${this.priority} | создана: ${created}`;
-    }
+    abstract readonly kind: TaskKind;
+    protected abstract readonly label: string;
 
-    abstract getInfo(): string;
+    abstract getDetails(): string;
+
+    getInfo() {
+        const created = this.#createdAt.toLocaleDateString("ru-RU");
+        return `[${this.label} #${this.id} ${this.title} | статус: ${this.status} | приоритет: ${this.priority} | создана: ${created}] | ${this.getDetails()}`;
+    }
 }

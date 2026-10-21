@@ -3,13 +3,15 @@ import {BaseTask} from "./base-task.ts";
 
 export class Bug extends BaseTask {
     severity: Severity;
+    readonly kind = "bug";
+    protected readonly label = "Баг";
 
     constructor(title: string, status: Status, priority: Priority, severity: Severity) {
         super(title, status, priority);
         this.severity = severity;
     }
 
-    getInfo() {
-        return `[Баг ${this.baseInfo()}] | критичность: ${this.severity}`;
+    getDetails() {
+        return `Критичность: ${this.severity}`;
     }
 }
