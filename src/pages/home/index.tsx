@@ -24,7 +24,10 @@ export const HomePage = () => {
         <>
             <header className={styles.header}>
                 <h1>Task Tracker</h1>
-                <MoveTaskButtons task={selectedTask} onMove={handleMove}/>
+                <MoveTaskButtons
+                    status={selectedTask?.status ?? null}
+                    onMove={(status) => selectedTask && handleMove(selectedTask, status)}
+                />
             </header>
             <TaskBoard tasks={tasks} selectedId={selectedId} onSelect={handleSelect}/>
         </>

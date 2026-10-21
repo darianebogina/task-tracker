@@ -1,14 +1,14 @@
-import {STATUSES, type ITask, type Status} from "@entities/task/model";
+import {STATUSES, type Status} from "@entities/task/model";
 import {MOVES} from "./config/moves.ts";
 import styles from "./styles.module.css";
 
 type MoveTaskButtonsProps = {
-    task: ITask | null;
-    onMove: (task: ITask, status: Status) => void;
+    status: Status | null;
+    onMove: (status: Status) => void;
 };
 
-export const MoveTaskButtons = ({task, onMove}: MoveTaskButtonsProps) => {
-    const index = task ? STATUSES.indexOf(task.status) : -1;
+export const MoveTaskButtons = ({status, onMove}: MoveTaskButtonsProps) => {
+    const index = status ? STATUSES.indexOf(status) : -1;
 
     return (
         <div className={styles.controls}>
@@ -21,7 +21,7 @@ export const MoveTaskButtons = ({task, onMove}: MoveTaskButtonsProps) => {
                         type="button"
                         className={styles.button}
                         disabled={!target}
-                        onClick={() => task && target && onMove(task, target)}
+                        onClick={() => target && onMove(target)}
                         aria-label={ariaLabel}
                     >
                         {label}
