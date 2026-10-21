@@ -1,12 +1,12 @@
 import type {TaskVariant, TaskKind} from "../model";
 import {STATUS_TITLES} from "../config/statuses.ts";
 
-export const TASK_KIND_LABELS: Record<TaskKind, string> = {
+const TASK_KIND_LABELS: Record<TaskKind, string> = {
     task: "Задача",
     bug: "Баг",
 };
 
-export const formatDate = (date: Date) => date.toLocaleDateString("ru-RU");
+const formatDate = (date: Date) => date.toLocaleDateString("ru-RU");
 
 export const formatTaskDetails = (task: TaskVariant) => {
     switch (task.kind) {

@@ -1,6 +1,6 @@
 import clsx from "clsx";
-import type {TaskVariant} from "./model";
-import {formatTaskDetails, formatTaskInfo} from "./lib/format.ts";
+import type {TaskVariant} from "../model";
+import {formatTaskDetails, formatTaskInfo} from "../lib/format.ts";
 import styles from "./styles.module.css";
 
 type TaskCardProps = {

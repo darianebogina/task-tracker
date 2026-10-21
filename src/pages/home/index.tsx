@@ -1,7 +1,7 @@
 import {useState} from "react";
 import {TaskBoard} from "@widgets/task-board";
 import {MoveTaskButtons} from "@features/move-task";
-import type {TaskVariant, ITask, Status} from "@entities/task/model";
+import type {TaskVariant, ITask, Status} from "@entities/task";
 import styles from "./styles.module.css";
 
 type HomePageProps = {

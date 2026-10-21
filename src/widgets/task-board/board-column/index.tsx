@@ -1,6 +1,4 @@
-import {TaskCard} from "@entities/task";
-import type {TaskVariant, Status} from "@entities/task/model";
-import {STATUS_TITLES} from "@entities/task/config/statuses.ts";
+import {STATUS_TITLES, TaskCard, type Status, type TaskVariant} from "@entities/task";
 import styles from "./styles.module.css";
 
 type BoardColumnProps = {

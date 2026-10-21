@@ -1,4 +1,4 @@
-import {Bug, Task, type TaskVariant} from "@entities/task/model";
+import {Bug, Task, type TaskVariant} from "@entities/task";
 
 export const MOCK_TASKS: TaskVariant[] = [
     new Task({

@@ -1,4 +1,4 @@
-import type {Priority, Status, TaskKind} from "../types.ts";
+import {PRIORITIES, type Priority, type Status, type TaskKind} from "../types.ts";
 
 export interface ITask {
     readonly id: number;
@@ -51,12 +51,14 @@ export abstract class BaseTask implements ITask {
     }
 
     static isValidPriority(value: number) {
-        return Number.isInteger(value) && value >= 1 && value <= 5;
+        return (PRIORITIES as readonly number[]).includes(value);
     }
 
     static #validatePriority(value: Priority) {
         if (!BaseTask.isValidPriority(value)) {
-            throw new RangeError("Приоритет должен быть целым числом от 1 до 5");
+            throw new RangeError(
+                `Приоритет должен быть целым числом от ${PRIORITIES[0]} до ${PRIORITIES.at(-1)}`,
+            );
         }
         return value;
     }

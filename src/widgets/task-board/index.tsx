@@ -1,4 +1,4 @@
-import {STATUSES, compareByPriority, type TaskVariant} from "@entities/task/model";
+import {STATUSES, compareByPriority, type TaskVariant} from "@entities/task";
 import {BoardColumn} from "./board-column";
 import styles from "./styles.module.css";
 

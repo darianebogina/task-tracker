@@ -1,3 +1,3 @@
-export * from "./types.ts";
-export * from "./classes/index.ts";
-export * from "./compare.ts";
+export {STATUSES, type Status, type TaskKind} from "./types.ts";
+export {Bug, Task, type ITask, type TaskVariant} from "./classes";
+export {compareByPriority} from "./compare.ts";

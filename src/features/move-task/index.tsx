@@ -1,4 +1,4 @@
-import {STATUSES, type Status} from "@entities/task/model";
+import {STATUSES, type Status} from "@entities/task";
 import {MOVES} from "./config/moves.ts";
 import styles from "./styles.module.css";
 
