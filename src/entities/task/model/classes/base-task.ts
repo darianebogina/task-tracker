@@ -19,8 +19,9 @@ export type BaseTaskParams = {
 
 export abstract class BaseTask implements ITask {
     readonly #id: number;
-    readonly #createdAt: Date;
     #priority: Priority;
+
+    protected readonly creationDate: Date;
 
     title: string;
     status: Status;
@@ -30,7 +31,7 @@ export abstract class BaseTask implements ITask {
         this.title = title;
         this.status = status;
         this.#priority = BaseTask.#validatePriority(priority);
-        this.#createdAt = createdAt;
+        this.creationDate = createdAt;
     }
 
     get id() {
@@ -38,7 +39,7 @@ export abstract class BaseTask implements ITask {
     }
 
     get createdAt() {
-        return this.#createdAt;
+        return this.creationDate;
     }
 
     get priority() {
@@ -49,8 +50,12 @@ export abstract class BaseTask implements ITask {
         this.#priority = BaseTask.#validatePriority(value);
     }
 
+    static isValidPriority(value: number) {
+        return Number.isInteger(value) && value >= 1 && value <= 5;
+    }
+
     static #validatePriority(value: Priority) {
-        if (value < 1 || value > 5) {
+        if (!BaseTask.isValidPriority(value)) {
             throw new RangeError("Приоритет должен быть целым числом от 1 до 5");
         }
         return value;

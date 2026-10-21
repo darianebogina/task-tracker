@@ -10,6 +10,9 @@ export class Task extends BaseTask {
 
     constructor({deadline, ...params}: TaskParams) {
         super(params);
+        if (deadline.getTime() < this.creationDate.getTime()) {
+            throw new RangeError("Дедлайн не может быть раньше даты создания задачи");
+        }
         this.deadline = deadline;
     }
 }
