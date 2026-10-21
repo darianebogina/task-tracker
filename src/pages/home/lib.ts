@@ -1,6 +1,6 @@
-import {Bug, Task, type ITask} from "@entities/task/model";
+import {Bug, Task, type TaskVariant} from "@entities/task/model";
 
-export const MOCK_TASKS: ITask[] = [
+export const MOCK_TASKS: TaskVariant[] = [
     new Task("Сверстать шапку", "todo", 3, new Date("2026-10-10")),
     new Bug("Не сохраняется фильтр", "todo", 1, "major"),
     new Task("Настроить роутинг", "todo", 2, new Date("2026-10-15")),

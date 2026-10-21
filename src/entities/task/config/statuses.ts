@@ -1,4 +1,4 @@
-import type {Status} from "@entities/task/model";
+import type {Status} from "../model";
 
 export const STATUS_TITLES: Record<Status, string> = {
     todo: "К выполнению",

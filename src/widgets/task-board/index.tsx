@@ -1,11 +1,11 @@
-import {BaseTask, STATUSES, type ITask} from "@entities/task/model";
+import {STATUSES, compareByPriority, type TaskVariant} from "@entities/task/model";
 import {BoardColumn} from "./board-column";
 import styles from "./styles.module.css";
 
 type TaskBoardProps = {
-    tasks: ITask[];
+    tasks: TaskVariant[];
     selectedId: number | null;
-    onSelect: (task: ITask) => void;
+    onSelect: (task: TaskVariant) => void;
 };
 
 export const TaskBoard = ({tasks, selectedId, onSelect}: TaskBoardProps) => {
@@ -17,7 +17,7 @@ export const TaskBoard = ({tasks, selectedId, onSelect}: TaskBoardProps) => {
                     status={status}
                     tasks={tasks
                         .filter((task) => task.status === status)
-                        .toSorted(BaseTask.compareByPriority)}
+                        .toSorted(compareByPriority)}
                     selectedId={selectedId}
                     onSelect={onSelect}
                 />

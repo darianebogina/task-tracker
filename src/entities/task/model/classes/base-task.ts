@@ -6,9 +6,7 @@ export interface ITask {
     title: string;
     status: Status;
     priority: Priority;
-
-    getInfo(): string;
-    getDetails(): string;
+    readonly createdAt: Date;
 }
 
 export abstract class BaseTask implements ITask {
@@ -33,16 +31,16 @@ export abstract class BaseTask implements ITask {
         return this.#id;
     }
 
+    get createdAt() {
+        return this.#createdAt;
+    }
+
     get priority() {
         return this.#priority;
     }
 
     set priority(value: Priority) {
         this.#priority = BaseTask.#validatePriority(value);
-    }
-
-    static compareByPriority(a: ITask, b: ITask) {
-        return a.priority - b.priority;
     }
 
     static #validatePriority(value: Priority) {
@@ -53,12 +51,4 @@ export abstract class BaseTask implements ITask {
     }
 
     abstract readonly kind: TaskKind;
-    protected abstract readonly label: string;
-
-    abstract getDetails(): string;
-
-    getInfo() {
-        const created = this.#createdAt.toLocaleDateString("ru-RU");
-        return `[${this.label} #${this.id} ${this.title} | статус: ${this.status} | приоритет: ${this.priority} | создана: ${created}] | ${this.getDetails()}`;
-    }
 }

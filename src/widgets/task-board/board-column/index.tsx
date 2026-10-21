@@ -1,13 +1,13 @@
 import {TaskCard} from "@entities/task";
-import type {ITask, Status} from "@entities/task/model";
-import {STATUS_TITLES} from "../config/columns.ts";
+import type {TaskVariant, Status} from "@entities/task/model";
+import {STATUS_TITLES} from "@entities/task/config/statuses.ts";
 import styles from "./styles.module.css";
 
 type BoardColumnProps = {
     status: Status;
-    tasks: ITask[];
+    tasks: TaskVariant[];
     selectedId: number | null;
-    onSelect: (task: ITask) => void;
+    onSelect: (task: TaskVariant) => void;
 };
 
 export const BoardColumn = ({status, tasks, selectedId, onSelect}: BoardColumnProps) => {
